@@ -34,6 +34,9 @@ const Register: React.FC = ({navigation}:any) => {
   // Function to handle form submission
   const onSubmit = (data: FormData) => {
     console.log('Form Data:', data);
+    if(data){
+      navigation.navigate('HomeScreen');
+    }
   };
 
   return (
