@@ -25,3 +25,9 @@ export const rememberme =`<svg width="20" height="20" viewBox="0 0 12 12" fill="
 </svg>
 
 `
+export const backIcon =`<svg width="20" height="34" viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.6667 33.6666L0 17L16.6667 0.333313L19.625 3.29165L5.91667 17L19.625 30.7083L16.6667 33.6666Z" fill="#E7E7E9"/>
+</svg>
+
+
+`

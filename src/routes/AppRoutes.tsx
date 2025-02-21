@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import Login from "../screens/AuthScreen/Login";
+import Register from "../screens/AuthScreen/Register";
 
 
 const Stack = createNativeStackNavigator();
@@ -26,8 +27,18 @@ const AppRoutes = () => {
           component={Login}
           options={{
             headerShown: false,
-            animation: 'none',
-            presentation: 'transparentModal', // Fade transition effect
+            animation:'slide_from_right'
+            
+           
+          }}
+        />
+        <Stack.Screen
+          name="register"
+          component={Register}
+          options={{
+            headerShown: false,
+           animation:'slide_from_right'
+           
           }}
         />
 

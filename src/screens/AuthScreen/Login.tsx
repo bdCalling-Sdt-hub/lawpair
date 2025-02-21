@@ -19,31 +19,34 @@ interface LoginProps {
   password: string;
 }
 
-const Login = () => {
+const Login = ({navigation}:any) => {
 
-  const Navigation = useNavigation();
+  
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginProps>();
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState <boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
   const onSubmit = (data: LoginProps) => {
-    console.log('Form Data:', data, 'Remember Me:', rememberMe);
+   
+      if(data.email && data.password){
+        navigation.navigate('HomeScreen');
+      }
   };
 
   return (
     <View style={tw`flex-1 `}>
       <Header
         title="Sign-in to your account..."
-       
+       isbackbutton={false}
       />
 
       <View style={tw`px-4 pt-[80% ] pb-6`}>
@@ -153,9 +156,11 @@ const Login = () => {
         </TouchableOpacity>
 
 
-        <View style={tw`flex-row items-center justify-center mt-[10%]`}>
+        <View style={tw`flex-row items-center justify-center pt-11 `}>
           <Text style={tw`text-[#41414D] text-sm font-semibold`}>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => Navigation.navigate('Register')}>
+          <TouchableOpacity
+           onPress={() => navigation.navigate('register')}
+           >
             <Text style={tw`text-[#4B8FCB] text-sm font-semibold pl-1`}>Sign up</Text>
           </TouchableOpacity>
         </View>
