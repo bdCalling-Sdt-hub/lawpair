@@ -35,7 +35,7 @@ const Login = ({navigation}: any) => {
 
   const onSubmit = (data: LoginProps) => {
     if (data.email && data.password) {
-      navigation.navigate('HomeScreen');
+      navigation.navigate('bottomroutes');
     }
   };
 

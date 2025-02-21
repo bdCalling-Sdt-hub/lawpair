@@ -7,6 +7,7 @@ import ForgetPassword from "../screens/AuthScreen/ForgetPassword";
 import OtpVerify from "../screens/AuthScreen/OtpVerify";
 import CreateNewPasword from "../screens/AuthScreen/CreateNewPasword";
 import HomeScreen from "../screens/homeScreen/HomeScreen";
+import BottomRoutes from "./BottomRoutes";
 
 
 const Stack = createNativeStackNavigator();
@@ -68,8 +69,8 @@ const AppRoutes = () => {
           }}
         />
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
+          name="bottomroutes" 
+          component={BottomRoutes}
           options={{
             headerShown: false,
            animation:'slide_from_right'

@@ -27,7 +27,7 @@ const CreateNewPassword = ({ navigation }: any) => {
 
   const onSubmit = (data: PasswordProps) => {
     if (data.password === data.confirmPassword) {
-      navigation.navigate('HomeScreen');
+      navigation.navigate('bottomroutes');
     }
   };
 
