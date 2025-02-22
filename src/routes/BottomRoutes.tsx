@@ -1,67 +1,69 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Dimensions, Platform, Text, TouchableOpacity, View } from 'react-native';
-import HomeScreen from '../screens/homeScreen/HomeScreen';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SvgXml } from 'react-native-svg';
-import { homeicon } from '../assets/Icons';
 import tw from '../lib/tailwind';
-
-const { height, width } = Dimensions.get('window');
-const isTablet = width >= 768;
-const TAB_BAR_HEIGHT = isTablet ? 80 : Platform.OS === 'ios' ? 90 : 75;
-const TAB_BAR_PADDING = isTablet ? 15 : 10;
+import HomeScreen from '../screens/homeScreen/HomeScreen';
+import { homeicon, categoryicon, profileicon, profileiconactive } from '../assets/Icons';
 
 const Tab = createBottomTabNavigator();
 
-const BottomRoutes: React.FC = () => {
+function CustomTabBar({ state, descriptors, navigation }) {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: 'white',
-          height: TAB_BAR_HEIGHT,
-          paddingBottom: TAB_BAR_PADDING,
-        },
-        tabBarActiveTintColor: 'red',
-        tabBarInactiveTintColor: 'gray',
-        tabBarLabelStyle: {
-          fontSize: isTablet ? 16 : 13,
-          fontWeight: 'bold',
-        },
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: () => null, // Hide default label
-          tabBarIcon: ({ color, focused }) => (
-            <View style={tw`flex items-center justify-center px-3 py-1 rounded-lg ${focused ? 'bg-primary' : 'bg-transparent'}`}>
-              <SvgXml xml={homeicon} />
-              <Text style={tw`text-xs font-bold ${focused ? 'text-white' : 'text-gray-500'}`}>
-                Home
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Settings" // Changed name to Settings
-        component={HomeScreen} // You can replace this with another screen if needed
-        options={{
-          headerShown: false,
-          tabBarLabel: () => null, // Hide default label
-          tabBarIcon: ({ color, focused }) => (
-            <View style={tw`flex items-center justify-center px-3 py-1 rounded-lg ${focused ? 'bg-primary' : 'bg-transparent'}`}>
-              <SvgXml xml={homeicon} />
-              <Text style={tw`text-xs font-bold ${focused ? 'text-white' : 'text-gray-500'}`}>
-                Settings
-              </Text>
-            </View>
-          ),
-        }}
-      />
+    <View style={tw`flex-row justify-around px-4 h-16 items-center bg-white`}>
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        // Icon Mapping for Each Tab
+        let icon;
+        switch (route.name) {
+          case 'Home':
+            icon = homeicon;
+            break;
+          case 'Category':
+            icon = categoryicon;
+            break;
+          case 'Profile':
+            icon = isFocused ? profileiconactive : profileicon;
+            break;
+          default:
+            icon = homeicon;
+        }
+
+        return (
+          <TouchableOpacity
+            key={index}
+            onPress={onPress}
+            style={tw`flex-row items-center px-4 py-2 rounded-full ${isFocused ? 'bg-blue-500' : 'bg-transparent'}`}
+          >
+            <SvgXml xml={icon} width={24} height={24} />
+            {isFocused && <Text style={tw`text-white ml-2 font-bold`}>{route.name}</Text>}
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+}
+
+const BottomRoutes = () => {
+  return (
+    <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <CustomTabBar {...props} />}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Category" component={HomeScreen} />
+      <Tab.Screen name="Profile" component={HomeScreen} />
     </Tab.Navigator>
   );
 };
