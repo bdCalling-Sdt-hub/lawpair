@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { menuitem } from '../assets/Icons';
+import { SvgXml } from 'react-native-svg';
 
 const MainScreenHeader: React.FC = () => {
   const navigation = useNavigation();
@@ -9,11 +11,13 @@ const MainScreenHeader: React.FC = () => {
     <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, backgroundColor: '#fff' }}>
       {/* Sidebar Toggle Button */}
       <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-        <Text style={{ fontSize: 24 }}>☰</Text>
+        <Text style={{ fontSize: 24 }}>
+          <SvgXml xml={menuitem} />
+        </Text>
       </TouchableOpacity>
 
       {/* Logo */}
-      <Text style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 10 }}>LawPair</Text>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 10 }}>Hi, Imad </Text>
 
       {/* User Info */}
       <View style={{ marginLeft: 'auto', flexDirection: 'row', alignItems: 'center' }}>
