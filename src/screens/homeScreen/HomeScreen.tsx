@@ -74,7 +74,7 @@ const HomeScreen: React.FC = () => {
         <Text style={tw`text-lg font-bold mb-3`}>Free legal resources</Text>
         <View style={tw`bg-black rounded-lg overflow-hidden relative`}>
           <Image
-            source={{ uri: "https://source.unsplash.com/600x400/?law,books" }}
+            source={require("../../assets/images/Content.png")}
             style={tw`w-full h-40 opacity-50`}
           />
           <View style={tw`absolute inset-0 p-5`}>
@@ -82,7 +82,7 @@ const HomeScreen: React.FC = () => {
             <Text style={tw`text-white text-sm mt-2`}>
               Navigate complex legal matters with clarity and confidence.
             </Text>
-            <TouchableOpacity style={tw`mt-3 bg-white py-1 px-4 rounded`}> 
+            <TouchableOpacity style={tw`mt-3 bg-white py-1 px-4 rounded w-full max-w-[110px]`}> 
               <Text style={tw`text-black font-bold`}>Read more</Text>
             </TouchableOpacity>
           </View>
