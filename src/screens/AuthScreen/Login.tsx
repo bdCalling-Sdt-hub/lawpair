@@ -33,10 +33,12 @@ const Login = ({navigation}: any) => {
     setShowPassword(prev => !prev);
   };
 
+
+
   const onSubmit = (data: LoginProps) => {
-    if (data.email && data.password) {
-      navigation.navigate('bottomroutes');
-    }
+    // if (data.email && data.password) {
+      // navigation.navigate('bottomroutes');
+    // }
   };
 
   return (
@@ -154,7 +156,13 @@ const Login = ({navigation}: any) => {
         {/* Submit Button */}
         <TouchableOpacity
           style={tw`bg-primary p-3 rounded-md flex flex-row items-center justify-center`}
-          onPress={handleSubmit(onSubmit)}>
+          onPress={
+            
+            // handleSubmit(onSubmit)
+            () => navigation.navigate('bottomroutes')
+            
+            
+            }>
           <View style={tw`flex flex-row items-center justify-center`}>
             <Text style={tw`text-[#E7E7E9] text-[16px] font-bold pr-1`}>
               Sign in

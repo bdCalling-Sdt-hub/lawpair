@@ -20,6 +20,7 @@ module.exports = {
        RobotoRegular: 'Roboto-Regular',
        RobotoSemiBold: 'Roboto-SemiBold',
        RobotoThin: 'Roboto-Thin',
+       CrimsonPro:"CrimsonPro-SemiBold",
       },
 
       colors: {
