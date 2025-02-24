@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
 import MainScreenHeader from '../../components/MainScreenHeader';
 import tw from 'twrnc';
 import {SvgXml} from 'react-native-svg';
-import {Immigration} from '../../assets/Icons';
+import {Immigration, ImmigrationactiveIcon} from '../../assets/Icons';
 import Animated from 'react-native-reanimated';
 import {Item} from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 import image1 from '../../assets/images/legalresource1.png';
@@ -21,22 +21,13 @@ import image4 from '../../assets/images/Content3.png';
 import image5 from '../../assets/images/Content4.png';
 import image6 from '../../assets/images/Content5.png';
 // Define types for legal help categories
+
 interface LegalHelpCategory {
   name: string;
   icon: string;
 }
 
-const legalHelpCategories: LegalHelpCategory[] = [
-  {name: 'Immigration', icon: 'account-group'},
-  {name: 'Advance Care Planning', icon: 'file-document-edit'},
-  {name: 'Residential Real Estate', icon: 'home-city'},
-  {name: 'Wills & Trusts', icon: 'clipboard-text'},
-  {name: 'Criminal Defense', icon: 'gavel'},
-  {name: 'Family & Matrimonial', icon: 'human-male-female-child'},
-  {name: 'Commercial Real Estate', icon: 'city'},
-  {name: 'Trademarks', icon: 'trademark'},
-  {name: 'Business Formation', icon: 'briefcase'},
-];
+
 
 const legalData = [
   {
@@ -78,8 +69,32 @@ const legalData = [
 ];
 
 const HomeScreen: React.FC = () => {
+
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const legalHelpCategories: LegalHelpCategory[] = [
+    { name: 'Immigration', icon: 'account-group' },
+    { name: 'Advance Care Planning', icon: 'file-document-edit' },
+    { name: 'Residential Real Estate', icon: 'home-city' },
+    { name: 'Wills & Trusts', icon: 'clipboard-text' },
+    { name: 'Criminal Defense', icon: 'gavel' },
+    { name: 'Family & Matrimonial', icon: 'human-male-female-child' },
+    { name: 'Commercial Real Estate', icon: 'city' },
+    { name: 'Trademarks', icon: 'trademark' },
+    { name: 'Business Formation', icon: 'briefcase' },
+  ];
+
+  // Toggle selection
+  const toggleSelection = (name: string) => {
+    setSelectedCategories((prevSelected) =>
+      prevSelected.includes(name)
+        ? prevSelected.filter((item) => item !== name) // Remove if already selected
+        : [...prevSelected, name] // Add if not selected
+    );
+  };
   return (
-    <ScrollView style={tw`flex-1 bg-white`}>
+    <ScrollView style={tw`flex-1 bg-[#F5F5F7]`}>
       {/* Header */}
       <MainScreenHeader />
 
@@ -114,44 +129,47 @@ const HomeScreen: React.FC = () => {
         <FlatList
           data={legalHelpCategories}
           numColumns={3}
-          keyExtractor={item => item.name}
-          renderItem={({item}) => (
-            <View style={tw`w-1/3 p-2`}>
-              <Pressable
-                style={({pressed}) => [
-                  tw`h-22 rounded-lg items-center p-2 justify-center shadow-lg`,
-                  {
-                    backgroundColor: pressed ? '#1B69AD' : '#FFFFFF', // Background color change
-                    shadowColor: '#00537D',
-                    shadowOpacity: 0.5,
-                    shadowOffset: {width: 0, height: 4},
-                    shadowRadius: 8,
-                    elevation: 4,
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => {
+            const isSelected = selectedCategories.includes(item.name);
 
-                    transform: [{scale: pressed ? 0.97 : 1}], // Shrink effect on press
-                    opacity: pressed ? 0.8 : 1, // Reduce opacity when pressed
-                  },
-                ]}>
-                {({pressed}) => (
-                  <>
-                    <Animated.View
-                      style={{
-                        transform: [{scale: pressed ? 1.05 : 1}], // Small scale-up animation
-                      }}>
-                      <SvgXml xml={Immigration} />
-                    </Animated.View>
-                    <Text
-                      style={[
-                        tw`mt-1 text-center text-xs`,
-                        {color: pressed ? '#FFFFFF' : '#10101E'}, // Change text color
-                      ]}>
-                      {item.name}
-                    </Text>
-                  </>
-                )}
-              </Pressable>
-            </View>
-          )}
+            return (
+              <View style={tw`w-1/3 p-2`}>
+                <Pressable
+                  onPress={() => toggleSelection(item.name)}
+                  style={[
+                    tw`h-22 rounded-lg items-center p-2 justify-center shadow-lg`,
+                    {
+                      backgroundColor: isSelected ? '#1B69AD' : '#FFFFFF',
+                      shadowColor: '#00537D',
+                      shadowOpacity: 0.5,
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowRadius: 8,
+                      elevation: 4,
+                      transform: [{ scale: isSelected ? 0.97 : 1 }],
+                      opacity: isSelected ? 0.9 : 1,
+                    },
+                  ]}
+                >
+                  <Animated.View
+                    style={{
+                      transform: [{ scale: isSelected ? 1.05 : 1 }],
+                    }}
+                  >
+                     <SvgXml xml={isSelected ? ImmigrationactiveIcon : Immigration} />
+                  </Animated.View>
+                  <Text
+                    style={[
+                      tw`mt-1 text-center text-xs`,
+                      { color: isSelected ? '#FFFFFF' : '#10101E' },
+                    ]}
+                  >
+                    {item.name}
+                  </Text>
+                </Pressable>
+              </View>
+            );
+          }}
           removeClippedSubviews={true}
         />
       </View>
@@ -164,27 +182,6 @@ const HomeScreen: React.FC = () => {
 
         {/* Legal Compass Card */}
 
-        {/* <View style={tw` rounded-lg overflow-hidden relative`}>
-          <Image
-            source={require('../../assets/images/legalresource1.png')}
-            style={tw`w-full `}
-          />
-          <View style={tw`absolute inset-0 p-5`}>
-            <Text style={tw`text-white text-xl font-bold`}>
-              Your Legal Compass
-            </Text>
-            <Text style={tw`text-gray-200 text-xs font-normal mt-2`}>
-              Navigate complex legal matters with clarity and confidence.
-            </Text>
-            <TouchableOpacity
-              style={tw`mt-6 bg-white py-2 px-4 rounded-lg shadow-lg shadow-[#00537D1A] max-w-[126px] w-full h-[40px]`}>
-              <Text
-                style={tw`text-[16px] font-bold text-[#001018] text-center`}>
-                Read more
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View> */}
 
         <FlatList
           data={legalData}

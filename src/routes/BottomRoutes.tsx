@@ -12,6 +12,8 @@ import {
   categoryiconactive,
   homeiconactive,
 } from '../assets/Icons';
+import Category from '../screens/categorys/Category';
+import Profile from '../screens/profile/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -102,7 +104,7 @@ const BottomRoutes = () => {
           },
         }}
         name="Category"
-        component={HomeScreen}
+        component={Category}
       />
 
       <Tab.Screen
@@ -114,7 +116,7 @@ const BottomRoutes = () => {
           },
         }}
         name="Profile"
-        component={HomeScreen}
+        component={Profile}
       />
     </Tab.Navigator>
   );
