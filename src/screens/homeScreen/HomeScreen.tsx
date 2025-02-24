@@ -8,7 +8,6 @@ import {
   ScrollView,
 } from "react-native";
 import MainScreenHeader from "../../components/MainScreenHeader";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import tw from "twrnc";
 import { SvgXml } from "react-native-svg";
 import { Immigration } from "../../assets/Icons";
@@ -52,17 +51,17 @@ const HomeScreen: React.FC = () => {
       </View>
 
       {/* Legal Help Categories */}
-      <View style={tw`p-5`}>
+      <View style={tw`p-2`}>
         <Text style={tw`text-lg font-bold mb-3`}>Find the Legal Help You Need</Text>
         <FlatList
           data={legalHelpCategories}
           numColumns={3}
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
-            <View style={tw`w-1/3 p-2 `}>
+            <View style={tw`w-[132px] p-2 `}>
               <View style={tw`bg-white shadow-lg h-22 p-4 rounded-lg items-center justify-center`}>
                <SvgXml xml={Immigration}  />
-                <Text style={tw`mt-2 text-center text-sm`}>{item.name}</Text>
+                <Text style={tw`mt-2 text-center text-sm`}>{item.name}s</Text>
               </View>
             </View>
           )}
