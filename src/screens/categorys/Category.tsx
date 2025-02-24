@@ -5,6 +5,7 @@ import tw from '../../lib/tailwind';
 import Animated from 'react-native-reanimated';
 import { SvgXml } from 'react-native-svg';
 import { Immigration, ImmigrationactiveIcon } from '../../assets/Icons';
+import { useNavigation } from '@react-navigation/native';
 
 interface LegalHelpCategory {
   name: string;
@@ -12,6 +13,7 @@ interface LegalHelpCategory {
 }
 
 const Category = () => {
+  const naviagation = useNavigation();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const legalHelpCategories: LegalHelpCategory[] = [
@@ -28,10 +30,9 @@ const Category = () => {
 
   // Toggle selection
   const toggleSelection = (name: string) => {
+    naviagation.navigate('categoryfilter')
     setSelectedCategories((prevSelected) =>
-      prevSelected.includes(name)
-        ? prevSelected.filter((item) => item !== name) // Remove if already selected
-        : [...prevSelected, name] // Add if not selected
+      prevSelected.includes(name)? prevSelected.filter((item) => item !== name)   : [...prevSelected, name] 
     );
   };
 
@@ -74,7 +75,7 @@ const Category = () => {
                       transform: [{ scale: isSelected ? 1.05 : 1 }],
                     }}
                   >
-                      <SvgXml xml={isSelected ? ImmigrationactiveIcon : Immigration} />
+                  <SvgXml xml={isSelected ? ImmigrationactiveIcon : Immigration} />
                    
                   </Animated.View>
                   <Text

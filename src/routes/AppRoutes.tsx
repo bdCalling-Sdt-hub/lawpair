@@ -10,6 +10,8 @@ import OtpVerify from "../screens/AuthScreen/OtpVerify";
 import CreateNewPasword from "../screens/AuthScreen/CreateNewPasword";
 import BottomRoutes from "./BottomRoutes";
 import Sidebar from "../components/Sidebar";
+import EditProfile from "../screens/profile/EditProfile";
+import Filtaredcategory from "../screens/categorys/Filtaredcategory";
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +36,9 @@ const AuthStack = () => (
     <Stack.Screen name="createpassword" component={CreateNewPasword} />
     <Stack.Screen name="register" component={Register} />
     <Stack.Screen name="bottomroutes" component={BottomRoutes} />
+
+    <Stack.Screen name="editprofile" component={EditProfile}/>
+    <Stack.Screen name="categoryfilter" component={Filtaredcategory}/>
   </Stack.Navigator>
 );
 
