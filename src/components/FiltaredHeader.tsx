@@ -1,33 +1,25 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
 import tw from '../lib/tailwind';
-import CustomDropdown from './CustomDropdown';
+import {useNavigation} from '@react-navigation/native';
+import {backIcon, backIcon2} from '../assets/Icons';
+import {SvgXml} from 'react-native-svg';
 
-const FiltaredHeader: React.FC = () => {
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
+
+const FiltaredHeader = ({title}) => {
+  const navigation = useNavigation();
   return (
     <View style={tw`p-4`}>
-      <Text style={tw`text-lg font-bold text-gray-700 mb-2`}>
-        You have to fill some information to continue
-      </Text>
+      <View style={tw`flex flex-row items-center gap-1 mt-4 `}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={tw`text-[#121221] text-[20px]  font-bold`}>
+            <SvgXml xml={backIcon2} />
+          </Text>
+        </TouchableOpacity>
 
-      {/* Location Dropdown */}
-      <CustomDropdown
-        label="Where are you located?"
-        options={['New Jersey', 'New York', 'Pennsylvania', 'Washington, D.C']}
-        selectedValue={selectedLocation}
-        onSelect={setSelectedLocation}
-      />
-
-      {/* Language Dropdown */}
-      <CustomDropdown
-        label="Language(s)"
-        options={['English', 'Spanish', 'French']}
-        selectedValue={selectedLanguage}
-        onSelect={setSelectedLanguage}
-      />
+        <Text style={tw`text-[#121221] text-[20px] font-bold`}>{title}</Text>
+      </View>
     </View>
   );
 };

@@ -13,7 +13,7 @@ interface LegalHelpCategory {
 }
 
 const Category = () => {
-  const naviagation = useNavigation();
+  const naviagation = useNavigation ();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const legalHelpCategories: LegalHelpCategory[] = [

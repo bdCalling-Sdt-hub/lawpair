@@ -12,6 +12,7 @@ import BottomRoutes from "./BottomRoutes";
 import Sidebar from "../components/Sidebar";
 import EditProfile from "../screens/profile/EditProfile";
 import Filtaredcategory from "../screens/categorys/Filtaredcategory";
+import SuggestedAttorneys from "../screens/categorys/SuggestedAttorneys";
 
 
 const Stack = createNativeStackNavigator();
@@ -39,6 +40,7 @@ const AuthStack = () => (
 
     <Stack.Screen name="editprofile" component={EditProfile}/>
     <Stack.Screen name="categoryfilter" component={Filtaredcategory}/>
+    <Stack.Screen name="suggestedatoreny" component={SuggestedAttorneys}/>
   </Stack.Navigator>
 );
 
