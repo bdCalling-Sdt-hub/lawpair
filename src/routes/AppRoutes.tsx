@@ -13,6 +13,8 @@ import Sidebar from "../components/Sidebar";
 import EditProfile from "../screens/profile/EditProfile";
 import Filtaredcategory from "../screens/categorys/Filtaredcategory";
 import SuggestedAttorneys from "../screens/categorys/SuggestedAttorneys";
+import AtonomyProfile from "../screens/categorys/AtonomyProfile";
+import FevoriteList from "../screens/fevoritelist/FevoriteList";
 
 
 const Stack = createNativeStackNavigator();
@@ -41,6 +43,8 @@ const AuthStack = () => (
     <Stack.Screen name="editprofile" component={EditProfile}/>
     <Stack.Screen name="categoryfilter" component={Filtaredcategory}/>
     <Stack.Screen name="suggestedatoreny" component={SuggestedAttorneys}/>
+    <Stack.Screen name="atonomyProfile" component={AtonomyProfile}/>
+    <Stack.Screen name="Favorite list" component={FevoriteList}/>
   </Stack.Navigator>
 );
 

@@ -41,7 +41,8 @@ const MainScreenHeader: React.FC = () => {
       </View>
 
       {/* User Info */}
-      <View
+      <TouchableOpacity
+      onPress={()=>navigation.navigate('Profile')}
         style={{
           marginLeft: 'auto',
           flexDirection: 'row',
@@ -51,7 +52,7 @@ const MainScreenHeader: React.FC = () => {
           source={require('../assets/images/avater.png')}
           style={{width: 40, height: 40, borderRadius: 20}}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

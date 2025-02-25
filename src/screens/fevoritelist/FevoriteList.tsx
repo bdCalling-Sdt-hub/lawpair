@@ -7,6 +7,7 @@ import tw from '../../lib/tailwind';
 import atornyimg1 from '../../assets/images/Attorny1.png'
 import atornyimg2 from '../../assets/images/atonomy2.png'
 import { ScrollView } from 'react-native-gesture-handler';
+import FevoriteListCard from '../../components/FevoriteListCard';
 
 const attorneys = [
   {
@@ -47,7 +48,7 @@ const attorneys = [
   },
 ];
 
-const SuggestedAttorneys = () => {
+const FevoriteList = () => {
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const handleSelect = (id: string) => {
         setSelectedIds(prevSelectedIds =>
@@ -61,16 +62,16 @@ const SuggestedAttorneys = () => {
       console.log('selectedids',selectedIds);
   return (
     <ScrollView style={tw` bg-[#F5F5F7] `}>
-      <FiltaredHeader title={'Back'} />
+      <FiltaredHeader title={'Favorite list'} />
 
       <View style={tw`p-4`}>
       <FlatList
         data={attorneys}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-            <AttorneyCard
+            <FevoriteListCard
             {...item}
-            selected={selectedIds.includes(item.id)}
+       
             onPress={() => handleSelect(item.id)}
           />
         )}
@@ -81,4 +82,4 @@ const SuggestedAttorneys = () => {
   );
 };
 
-export default SuggestedAttorneys;
+export default FevoriteList;

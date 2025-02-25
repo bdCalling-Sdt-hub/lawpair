@@ -20,6 +20,7 @@ import image3 from '../../assets/images/Content2.png';
 import image4 from '../../assets/images/Content3.png';
 import image5 from '../../assets/images/Content4.png';
 import image6 from '../../assets/images/Content5.png';
+import { useNavigation } from '@react-navigation/native';
 // Define types for legal help categories
 
 interface LegalHelpCategory {
@@ -69,7 +70,7 @@ const legalData = [
 ];
 
 const HomeScreen: React.FC = () => {
-
+const Navigation = useNavigation();
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -93,6 +94,7 @@ const HomeScreen: React.FC = () => {
         : [...prevSelected, name] // Add if not selected
     );
   };
+
   return (
     <ScrollView style={tw`flex-1 bg-[#F5F5F7]`}>
       {/* Header */}
@@ -112,6 +114,7 @@ const HomeScreen: React.FC = () => {
           that you can focus on what matters most.
         </Text>
         <TouchableOpacity
+        onPress={()=>Navigation.navigate('Category')}
           style={tw`mt-6 bg-white py-2 px-4 rounded-sm shadow-lg shadow-[#00537D1A] max-w-[198px] w-full h-[40px]`}>
           <Text style={tw`text-[16px] font-bold text-[#10101E] text-center`}>
             Find your lawyer

@@ -9,11 +9,10 @@ interface AttorneyCardProps {
   name: string;
   description: string;
   image: any; // Local image import
-  selected: boolean;
   onPress: () => void;
 }
 
-const AttorneyCard: React.FC<AttorneyCardProps> = ({ name, description, image, selected, onPress }) => {
+const FevoriteListCard: React.FC<AttorneyCardProps> = ({ name, description, image, onPress }) => {
     const Navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -46,7 +45,7 @@ const AttorneyCard: React.FC<AttorneyCardProps> = ({ name, description, image, s
 
       <TouchableOpacity  onPress={onPress}>
 
-      <SvgXml xml={ selected? correctchekcircle : chekcircle} width="24" height="24" fill={selected ? 'green' : 'gray'} />
+      <SvgXml xml={ correctchekcircle } width="24" height="24"  />
       </TouchableOpacity>
 
       {/* Selection Indicator */}
@@ -54,4 +53,4 @@ const AttorneyCard: React.FC<AttorneyCardProps> = ({ name, description, image, s
   );
 };
 
-export default AttorneyCard;
+export default FevoriteListCard;
