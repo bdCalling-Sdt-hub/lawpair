@@ -14,6 +14,8 @@ import {
 } from '../assets/Icons';
 import Category from '../screens/categorys/Category';
 import Profile from '../screens/profile/Profile';
+import AttorneyHomeScreen from '../screens/Attorneyscreen/AttorneyHomeScreen';
+import AttorneyProfile from '../screens/Attorneyscreen/AttorneyProfile';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,10 +44,8 @@ function CustomTabBar({state, descriptors, navigation}: any) {
           case 'Home':
             icon = isFocused ? homeiconactive : homeicon;
             break;
-          case 'Category':
-            icon = isFocused ? categoryiconactive : categoryicon;
-            break;
-          case 'Profile':
+    
+          case 'attornyProfile':
             icon = isFocused ? profileiconactive : profileicon;
             break;
           default:
@@ -70,7 +70,7 @@ function CustomTabBar({state, descriptors, navigation}: any) {
     </View>
   );
 }
-const BottomRoutes = () => {
+const AttorneyBottomRoutes = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -85,40 +85,30 @@ const BottomRoutes = () => {
         options={{
         
           tabBarLabelStyle: {
-            color: '#000000', // Label color
-            fontSize: 16, // Adjust font size
+            color: '#000000', 
+            fontSize: 16, 
           },
         }}
         name="Home"
-        component={HomeScreen}
+        component={AttorneyHomeScreen}
       />
+
 
       <Tab.Screen
         options={{
-          tabBarLabel: 'Category', // Custom label
+          
+          tabBarLabel: 'Profile', 
           tabBarLabelStyle: {
-            color: '#000000', // Label color
-            fontSize: 16, // Adjust font size
+            color: '#000000', 
+            fontSize: 16, 
           },
         }}
-        name="Category"
-        component={Category}
-      />
-
-      <Tab.Screen
-        options={{
-          tabBarLabel: 'Profile', // Custom label
-          tabBarLabelStyle: {
-            color: '#000000', // Label color
-            fontSize: 16, // Adjust font size
-          },
-        }}
-        name="Profile"
-        component={Profile}
+        name="attornyProfile"
+        component={AttorneyProfile}
       />
     </Tab.Navigator>
   );
 };
 
 
-export default BottomRoutes;
+export default AttorneyBottomRoutes;

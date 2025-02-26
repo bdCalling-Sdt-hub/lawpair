@@ -8,6 +8,8 @@ import tw from '../lib/tailwind';
 const MainScreenHeader: React.FC = () => {
   const navigation = useNavigation();
 
+  const attorney = true
+  const user = false
   return (
     <View
       style={{
@@ -42,7 +44,7 @@ const MainScreenHeader: React.FC = () => {
 
       {/* User Info */}
       <TouchableOpacity
-      onPress={()=>navigation.navigate('Profile')}
+      onPress={()=>navigation.navigate(`${attorney ?'attornyProfile':'Profile'}`)}
         style={{
           marginLeft: 'auto',
           flexDirection: 'row',

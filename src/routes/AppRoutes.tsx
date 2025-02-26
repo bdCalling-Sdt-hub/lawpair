@@ -15,6 +15,9 @@ import Filtaredcategory from "../screens/categorys/Filtaredcategory";
 import SuggestedAttorneys from "../screens/categorys/SuggestedAttorneys";
 import AtonomyProfile from "../screens/categorys/AtonomyProfile";
 import FevoriteList from "../screens/fevoritelist/FevoriteList";
+import AttorneyBottomRoutes from "./AttorneyBottomRoutes";
+import AvailavleAttorneys from "../screens/Attorneyscreen/AvailavleAttorneys";
+import CreateyourOwnprofile from "../screens/Attorneyscreen/CreateyourOwnprofile";
 
 
 const Stack = createNativeStackNavigator();
@@ -39,12 +42,15 @@ const AuthStack = () => (
     <Stack.Screen name="createpassword" component={CreateNewPasword} />
     <Stack.Screen name="register" component={Register} />
     <Stack.Screen name="bottomroutes" component={BottomRoutes} />
+    <Stack.Screen name="attorneybottomroutes" component={AttorneyBottomRoutes} />
 
     <Stack.Screen name="editprofile" component={EditProfile}/>
     <Stack.Screen name="categoryfilter" component={Filtaredcategory}/>
     <Stack.Screen name="suggestedatoreny" component={SuggestedAttorneys}/>
-    <Stack.Screen name="atonomyProfile" component={AtonomyProfile}/>
+    <Stack.Screen name="attornyProfile" component={AtonomyProfile}/>
     <Stack.Screen name="Favorite list" component={FevoriteList}/>
+    <Stack.Screen name="AvailableAttorneys" component={AvailavleAttorneys}/>
+    <Stack.Screen name="createownprofile" component={CreateyourOwnprofile}/>
   </Stack.Navigator>
 );
 

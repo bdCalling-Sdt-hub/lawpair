@@ -64,14 +64,13 @@ const FevoriteList = () => {
     <ScrollView style={tw` bg-[#F5F5F7] `}>
       <FiltaredHeader title={'Favorite list'} />
 
-      <View style={tw`p-4`}>
+      <View style={tw`p-2`}>
       <FlatList
         data={attorneys}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
             <FevoriteListCard
             {...item}
-       
             onPress={() => handleSelect(item.id)}
           />
         )}

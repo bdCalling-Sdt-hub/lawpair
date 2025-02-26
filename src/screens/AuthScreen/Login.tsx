@@ -20,6 +20,9 @@ interface LoginProps {
 }
 
 const Login = ({navigation}: any) => {
+
+  const attorney = true
+  const user = false
   const {
     control,
     handleSubmit,
@@ -159,7 +162,7 @@ const Login = ({navigation}: any) => {
           onPress={
             
             // handleSubmit(onSubmit)
-            () => navigation.navigate('bottomroutes')
+            () => navigation.navigate(`${attorney ? 'attorneybottomroutes' :'bottomroutes'}`)
             
             
             }>
